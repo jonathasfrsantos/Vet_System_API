@@ -1,63 +1,58 @@
 package com.jonathasdeveloper.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jonathasdeveloper.entities.Veterinario;
 import com.jonathasdeveloper.repositories.VeterinarioRepository;
-import com.jonathasdeveloper.services.exceptions.DatabaseException;
 import com.jonathasdeveloper.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class VeterinarioService {
 
 	@Autowired
-	private VeterinarioRepository repository;
+	private VeterinarioRepository veterinarioRepository;
 
-	public List<Veterinario> findAll() {
-		return repository.findAll();
+	@Transactional
+	public Veterinario save(Veterinario obj) {
+		return veterinarioRepository.save(obj);
 	}
-	
-	public Veterinario findById(Long id) {
-		Optional<Veterinario> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+
+	public Page<Veterinario> findAll(Pageable pageable) {
+		return veterinarioRepository.findAll(pageable);
 	}
-	
-	public Veterinario insert(Veterinario obj) {
-		return repository.save(obj);
+
+	public Optional<Veterinario> findById(Long id) {
+		return veterinarioRepository.findById(id);
 	}
-	
-	public void delete(Long id) {
+
+	@Transactional
+	public void delete(Veterinario veterinario) {
+		veterinarioRepository.delete(veterinario);
+	}
+
+	public Veterinario update(Long id, Veterinario veterinario) {
 		try {
-			repository.deleteById(id);
-		} catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException(e.getMessage());
-		}
-	}
-	
-	public Veterinario update(Long id, Veterinario obj) {
-		try {
-			Veterinario entity = repository.getOne(id);
-			updateData(entity, obj);
-			return repository.save(entity);
+			Veterinario entity = veterinarioRepository.getById(id);
+			updateData(entity, veterinario);
+			return veterinarioRepository.save(entity);
+
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
-		}	
+		}
 	}
-	
-	private void updateData(Veterinario entity, Veterinario obj) {
-		entity.setNome(obj.getNome());
-		entity.setCRMV(obj.getCRMV());
-	
+
+	private void updateData(Veterinario veterinario, Veterinario obj) {
+		veterinario.setNome(obj.getNome());
+		veterinario.setCRMV(obj.getCRMV());
+
 	}
-	
+
 }

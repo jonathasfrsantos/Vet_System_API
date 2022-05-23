@@ -55,7 +55,7 @@ public class PetResource {
 	public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
 		Optional<Pet> pet = petService.findById(id);
 		if (!pet.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet não encontrado!");
 		}
 
 		return ResponseEntity.status(HttpStatus.OK).body(pet.get());
@@ -65,7 +65,7 @@ public class PetResource {
 	public ResponseEntity<Object> update(@PathVariable(value = "id") Long id, @RequestBody @Valid PetDTO petDTO) {
 		Optional<Pet> petOptional = petService.findById(id);
 		if (!petOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet not found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet não encontrado!");
 		}
 		var newPetObj = new Pet();
 		BeanUtils.copyProperties(petDTO, newPetObj);
@@ -77,10 +77,10 @@ public class PetResource {
 	public ResponseEntity<Object> delete(@PathVariable(value = "id") Long id) {
 		Optional<Pet> pet = petService.findById(id);
 		if (!pet.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet não encontrado!");
 		}
 		petService.delete(pet.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Pet deleted successfully");
+		return ResponseEntity.status(HttpStatus.OK).body("Pet deletado com sucesso!");
 	}
 
 }

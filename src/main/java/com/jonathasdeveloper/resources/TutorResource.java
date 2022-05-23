@@ -52,7 +52,7 @@ public class TutorResource {
 	public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id) {
 		Optional<Tutor> tutor = tutorService.findById(id);
 		if (!tutor.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor não encontrado!");
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(tutor.get());
 	}
@@ -61,10 +61,10 @@ public class TutorResource {
 	public ResponseEntity<Object> delete(@PathVariable(value = "id") Long id) {
 		Optional<Tutor> tutor = tutorService.findById(id);
 		if (!tutor.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor não encontrado!");
 		}
 		tutorService.delete(tutor.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Tutor deleted successfully");
+		return ResponseEntity.status(HttpStatus.OK).body("Tutor deletado com sucesso!");
 	}
 
 	@PutMapping("/{id}")
@@ -72,7 +72,7 @@ public class TutorResource {
 			@RequestBody @Valid TutorDTO tutorDTO) {
 		Optional<Tutor> tutorOptional = tutorService.findById(id);
 		if (!tutorOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor not found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tutor não encontrado!");
 		}
 		var newTutorObj = new Tutor();
 		BeanUtils.copyProperties(tutorDTO, newTutorObj);
