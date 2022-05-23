@@ -35,8 +35,10 @@ public class Pet implements Serializable {
 	@JoinColumn(name = "id_tutor")
 	private Tutor tutor;
 
-	@OneToOne(mappedBy = "pet", cascade = CascadeType.ALL)
-	private CartaoVacina cartaoVacina;
+	/*
+	 * @OneToOne(mappedBy = "pet", cascade = CascadeType.ALL) private CartaoVacina
+	 * cartaoVacina;
+	 */
 
 	public Pet() {
 

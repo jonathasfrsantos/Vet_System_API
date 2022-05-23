@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jonathasdeveloper.dto.TutorDTO;
 import com.jonathasdeveloper.entities.Tutor;
-import com.jonathasdeveloper.repositories.TutorRepository;
 import com.jonathasdeveloper.services.TutorService;
 
 @RestController
@@ -35,7 +34,7 @@ public class TutorResource {
 
 
 	@PostMapping
-	public ResponseEntity<Object> saveTutor(@RequestBody @Valid TutorDTO tutorDTO) {
+	public ResponseEntity<Object> save(@RequestBody @Valid TutorDTO tutorDTO) {
 		Tutor tutor = new Tutor();
 		BeanUtils.copyProperties(tutorDTO, tutor);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tutorService.save(tutor));
@@ -69,7 +68,7 @@ public class TutorResource {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateTutor(@PathVariable(value = "id") Long id,
+	public ResponseEntity<Object> update(@PathVariable(value = "id") Long id,
 			@RequestBody @Valid TutorDTO tutorDTO) {
 		Optional<Tutor> tutorOptional = tutorService.findById(id);
 		if (!tutorOptional.isPresent()) {

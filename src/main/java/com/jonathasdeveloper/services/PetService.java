@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jonathasdeveloper.entities.Pet;
@@ -19,36 +22,32 @@ import com.jonathasdeveloper.services.exceptions.ResourceNotFoundException;
 public class PetService {
 
 	@Autowired
-	private PetRepository repository;
+	private PetRepository petRepository;
+	
+	@Transactional
+	public Pet save(Pet obj) {
+		return petRepository.save(obj);
+	}
 
-	public List<Pet> findAll() {
-		return repository.findAll();
+	public Page<Pet> findAll(Pageable pageable) {
+		return petRepository.findAll(pageable);
 	}
 	
-	public Pet findById(Long id) {
-		Optional<Pet> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+	public Optional<Pet>findById(Long id) {
+		return petRepository.findById(id);
 	}
 	
-	public Pet insert(Pet obj) {
-		return repository.save(obj);
+	@Transactional
+	public void delete(Pet pet) {
+		petRepository.delete(pet);
 	}
 	
-	public void delete(Long id) {
-		try {
-			repository.deleteById(id);
-		} catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException(id);
-		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException(e.getMessage());
-		}
-	}
 	
 	public Pet update(Long id, Pet obj) {
 		try {
-			Pet entity = repository.getOne(id);
+			Pet entity = petRepository.getById(id);
 			updateData(entity, obj);
-			return repository.save(entity);
+			return petRepository.save(entity);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		}	

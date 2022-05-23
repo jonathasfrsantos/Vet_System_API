@@ -41,7 +41,7 @@ public class TutorService {
 
 	public Tutor update(Long id, Tutor tutor) {
 		try {
-			Tutor entity = tutorRepository.getOne(id);
+			Tutor entity = tutorRepository.getById(id);
 			updateData(entity, tutor);
 			return tutorRepository.save(entity);
 

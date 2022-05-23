@@ -6,7 +6,7 @@ import com.jonathasdeveloper.entities.CartaoVacina;
 import com.jonathasdeveloper.entities.Tutor;
 
 public class PetDTO {
-	
+
 	private Long id;
 	@NotBlank
 	private String nome;
@@ -14,18 +14,28 @@ public class PetDTO {
 	private String raca;
 	@NotBlank
 	private String especie;
-	
+
 	private String sexo;
 	private String cor;
-	@NotBlank
+
 	private Tutor tutor;
-	
-	private CartaoVacina cartaoVacina;
-	
+
+	// private CartaoVacina cartaoVacina;
+
 	public PetDTO() {
 
 	}
-	
+
+	public PetDTO(Long id, @NotBlank String nome, @NotBlank String raca, @NotBlank String especie, String sexo,
+			String cor, @NotBlank Tutor tutor) {
+		this.id = id;
+		this.nome = nome;
+		this.raca = raca;
+		this.especie = especie;
+		this.sexo = sexo;
+		this.cor = cor;
+		this.tutor = tutor;
+	}
 
 	public Long getId() {
 		return id;
@@ -34,7 +44,6 @@ public class PetDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 
 	public String getNome() {
 		return nome;
@@ -84,13 +93,11 @@ public class PetDTO {
 		this.tutor = tutor;
 	}
 
-	public CartaoVacina getCartaoVacina() {
-		return cartaoVacina;
-	}
-
-	public void setCartaoVacina(CartaoVacina cartaoVacina) {
-		this.cartaoVacina = cartaoVacina;
-	}
-
-	
+	/*
+	 * public CartaoVacina getCartaoVacina() { return cartaoVacina; }
+	 * 
+	 * public void setCartaoVacina(CartaoVacina cartaoVacina) { this.cartaoVacina =
+	 * cartaoVacina; }
+	 * 
+	 */
 }
