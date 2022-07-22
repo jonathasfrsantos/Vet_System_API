@@ -56,7 +56,7 @@ public class VacinaService {
 	
 	private void updateData(Vacina entity, Vacina obj) {
 		entity.setNome(obj.getNome());
-		entity.setValor(obj.getValor());
+		entity.setValorVenda(obj.getValorVenda());
 	
 	}
 	

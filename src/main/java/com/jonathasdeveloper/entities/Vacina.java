@@ -3,104 +3,60 @@ package com.jonathasdeveloper.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_vacina")
 public class Vacina implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank
+	@Column(nullable = false, unique = true, length = 200)
 	private String nome;
+	
+	@NotBlank
+	@Column(nullable = false, unique = true, length = 100)
 	private String fabricante;
+	
+	@NotBlank
+	@Column(nullable = false, length = 20)
 	private String lote;
+	
+	@NotBlank
+	@Column(nullable = false, length = 20)
 	private String dataFabricacao;
-	private Double valor;
+	
 
-	public Vacina() {
+	private Double valorAquisicao;
+	
 
-	}
+	private Double valorVenda;
+	
 
-	public Vacina(Long id, String nome, String fabricante, String lote, String dataFabricacao, Double valor) {
-		this.id = id;
-		this.nome = nome;
-		this.fabricante = fabricante;
-		this.lote = lote;
-		this.dataFabricacao = dataFabricacao;
-		this.valor = valor;
-	}
+	private Integer qtdEstoque;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
-
-	public String getLote() {
-		return lote;
-	}
-
-	public void setLote(String lote) {
-		this.lote = lote;
-	}
-
-	public String getDataFabricacao() {
-		return dataFabricacao;
-	}
-
-	public void setDataFabricacao(String dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dataFabricacao, fabricante, id, lote, nome, valor);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vacina other = (Vacina) obj;
-		return Objects.equals(dataFabricacao, other.dataFabricacao) && Objects.equals(fabricante, other.fabricante)
-				&& Objects.equals(id, other.id) && Objects.equals(lote, other.lote) && Objects.equals(nome, other.nome)
-				&& Objects.equals(valor, other.valor);
-	}
 
 }

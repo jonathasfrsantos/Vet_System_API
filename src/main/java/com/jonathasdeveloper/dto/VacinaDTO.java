@@ -1,73 +1,48 @@
 package com.jonathasdeveloper.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class VacinaDTO {
 	
 	private Long id;
+	
 	@NotBlank
+	@Size(max = 200)
 	private String nome;
+	
+	
 	@NotBlank
+	@Size(max = 100)
 	private String fabricante;
+	
 	@NotBlank
+	@Size(max = 20)
 	private String lote;
+	
 	@NotBlank
+	@Size(max = 20)
 	private String dataFabricacao;
+	
 	@NotBlank
-	private Double valor;
+	private Double valorAquisicao;
 	
-	public VacinaDTO() {
-
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
-
-	public String getLote() {
-		return lote;
-	}
-
-	public void setLote(String lote) {
-		this.lote = lote;
-	}
-
-	public String getDataFabricacao() {
-		return dataFabricacao;
-	}
-
-	public void setDataFabricacao(String dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+	@NotBlank
+	private Double valorVenda;
 	
+	@NotBlank
+	private Integer qtdEstoque;
 	
+
 
 }
