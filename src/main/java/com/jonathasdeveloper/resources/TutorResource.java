@@ -37,7 +37,7 @@ public class TutorResource {
 	public ResponseEntity<Object> save(@RequestBody @Valid TutorDTO tutorDTO) {
 		Tutor tutor = new Tutor();
 		BeanUtils.copyProperties(tutorDTO, tutor);
-		return ResponseEntity.status(HttpStatus.CREATED).body(tutorService.save(tutor));
+		return ResponseEntity.status(HttpStatus.CREATED).body(tutorService.save(tutor));	
 
 	}
 
@@ -78,6 +78,10 @@ public class TutorResource {
 		BeanUtils.copyProperties(tutorDTO, newTutorObj);
 		newTutorObj.setId(tutorOptional.get().getId());
 		return ResponseEntity.status(HttpStatus.OK).body(tutorService.save(newTutorObj));
+		
+		
+		
+		
 	}
 
 }
