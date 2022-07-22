@@ -1,97 +1,48 @@
 package com.jonathasdeveloper.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-import com.jonathasdeveloper.entities.CartaoVacina;
 import com.jonathasdeveloper.entities.Tutor;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PetDTO {
 
 	private Long id;
+	
 	@NotBlank
+	@Size(max = 200)
 	private String nome;
+	
 	@NotBlank
+	@Size(max = 100)
 	private String raca;
+	
 	@NotBlank
+	@Size(max = 20)
 	private String especie;
 
+	@NotBlank
+	@Size(max = 5)
 	private String sexo;
+	
+	@NotBlank
+	@Size(max = 100)
 	private String cor;
 
 	private Tutor tutor;
 
 	// private CartaoVacina cartaoVacina;
 
-	public PetDTO() {
 
-	}
-
-	public PetDTO(Long id, @NotBlank String nome, @NotBlank String raca, @NotBlank String especie, String sexo,
-			String cor, @NotBlank Tutor tutor) {
-		this.id = id;
-		this.nome = nome;
-		this.raca = raca;
-		this.especie = especie;
-		this.sexo = sexo;
-		this.cor = cor;
-		this.tutor = tutor;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getRaca() {
-		return raca;
-	}
-
-	public void setRaca(String raca) {
-		this.raca = raca;
-	}
-
-	public String getEspecie() {
-		return especie;
-	}
-
-	public void setEspecie(String especie) {
-		this.especie = especie;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public Tutor getTutor() {
-		return tutor;
-	}
-
-	public void setTutor(Tutor tutor) {
-		this.tutor = tutor;
-	}
 
 	/*
 	 * public CartaoVacina getCartaoVacina() { return cartaoVacina; }
