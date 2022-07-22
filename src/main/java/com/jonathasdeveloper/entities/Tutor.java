@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Tutor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

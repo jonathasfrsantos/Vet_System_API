@@ -30,7 +30,8 @@ import lombok.Setter;
 @Table(name = "tb_pet")
 public class Pet implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

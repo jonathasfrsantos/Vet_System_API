@@ -1,44 +1,33 @@
 package com.jonathasdeveloper.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class VeterinarioDTO {
 	
 	private Long id;
+	
+	
 	@NotBlank
+	@Size(max = 200)
 	private String nome;
+	
 	@NotBlank
+	@Size(max = 20)
 	private String CRMV;
 	
-	public VeterinarioDTO() {
 
-	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCRMV() {
-		return CRMV;
-	}
-
-	public void setCRMV(String cRMV) {
-		CRMV = cRMV;
-	}
 	
-	
-	
-
 }

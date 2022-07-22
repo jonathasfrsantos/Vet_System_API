@@ -10,70 +10,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-
 @Table(name = "tb_Veterinario")
 public class Veterinario implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank
+	@Column(nullable = false, length = 200)
 	private String nome;
 
-	@Column(unique = true)
+	@NotBlank
+	@Column(nullable = false, unique = true, length = 20)
 	private String CRMV;
 
-	public Veterinario() {
 
-	}
 
-	public Veterinario(Long id, String nome, String CRMV) {
-		this.id = id;
-		this.nome = nome;
-		this.CRMV = CRMV;
-	}
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCRMV() {
-		return CRMV;
-	}
-
-	public void setCRMV(String CRMV) {
-		this.CRMV = CRMV;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Veterinario other = (Veterinario) obj;
-		return Objects.equals(id, other.id);
-	}
 
 }
