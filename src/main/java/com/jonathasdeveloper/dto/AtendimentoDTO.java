@@ -9,6 +9,15 @@ import com.jonathasdeveloper.entities.Veterinario;
 import com.jonathasdeveloper.entities.enums.StatusAtendimento;
 import com.jonathasdeveloper.entities.enums.TipoAtendimento;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AtendimentoDTO {
 	
 	private Long id;
@@ -24,70 +33,6 @@ public class AtendimentoDTO {
 	private Pet pet;
 	@NotBlank
 	private Veterinario veterinario;
-	
-	public AtendimentoDTO() {
-
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDateTime getData() {
-		return data;
-	}
-
-	public void setData(LocalDateTime data) {
-		this.data = data;
-	}
-
-	public StatusAtendimento getStatus() {
-		return StatusAtendimento.valueOf(statusAtendimento);
-	}
-
-	public void setStatusAtendimento(StatusAtendimento statusAtendimento) {
-		if (statusAtendimento != null) {
-			this.statusAtendimento = statusAtendimento.getCodigo();
-		}
-	}
-
-	public TipoAtendimento getTipoAtendimento() {
-		return TipoAtendimento.valueOf(tipoAtendimento);
-	}
-
-	public void setTipoAtendimento(TipoAtendimento tipoAtendimento) {
-		if (tipoAtendimento != null) {
-			this.tipoAtendimento = tipoAtendimento.getCodigo();
-		}
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public Pet getPet() {
-		return pet;
-	}
-
-	public void setPet(Pet pet) {
-		this.pet = pet;
-	}
-
-	public Veterinario getVet() {
-		return veterinario;
-	}
-
-	public void setVet(Veterinario vet) {
-		this.veterinario = vet;
-	}
 
 
 

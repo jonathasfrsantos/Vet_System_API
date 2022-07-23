@@ -56,7 +56,7 @@ public class AtendimentoService {
 	
 	private void updateData(Atendimento entity, Atendimento obj) {
 		entity.setData(obj.getData());
-		entity.setStatusAtendimento(obj.getStatus());
+		entity.setStatusAtendimento(obj.getStatusAtendimento());
 		entity.setTipoAtendimento(obj.getTipoAtendimento());
 		entity.setValor(obj.getValor());
 		entity.setPet(obj.getPet());

@@ -1,5 +1,6 @@
 package com.jonathasdeveloper.config;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.jonathasdeveloper.entities.Atendimento;
 import com.jonathasdeveloper.entities.Pet;
 import com.jonathasdeveloper.entities.Tutor;
 import com.jonathasdeveloper.entities.Vacina;
@@ -71,6 +73,10 @@ public class TestConfig implements CommandLineRunner {
 		Vacina vac3 = new Vacina(null, "LEISHMANIOSE", "Lab Shangai Corp", "652555ZW", "02-06-2020", 52.30, 98.00, 50);
 		
 		vacinaRepository.saveAll(Arrays.asList(vac1, vac2, vac3));
+		
+		Atendimento at1 = new Atendimento(null, LocalDateTime.parse("15/02/2022 12:32:32", formatter), 3 , 1, 100.0, p2, v1);
+		
+		atendimentoRepository.save(at1);
 		
 		/*		  Vacina vac1 = new Vacina(null, "AntiRabica", "Lab A", "AB-190", "03-03-2021",
 				  100.0); Vacina vac2 = new Vacina(null, "V10", "Laboratorio A", "UI-890",
