@@ -1,5 +1,6 @@
 package com.jonathasdeveloper.config;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -13,11 +14,13 @@ import com.jonathasdeveloper.entities.Atendimento;
 import com.jonathasdeveloper.entities.Pet;
 import com.jonathasdeveloper.entities.Tutor;
 import com.jonathasdeveloper.entities.Vacina;
+import com.jonathasdeveloper.entities.Vacinacao;
 import com.jonathasdeveloper.entities.Veterinario;
 import com.jonathasdeveloper.repositories.AtendimentoRepository;
 import com.jonathasdeveloper.repositories.PetRepository;
 import com.jonathasdeveloper.repositories.TutorRepository;
 import com.jonathasdeveloper.repositories.VacinaRepository;
+import com.jonathasdeveloper.repositories.VacinacaoRepository;
 import com.jonathasdeveloper.repositories.VeterinarioRepository;
 
 @Configuration
@@ -38,11 +41,15 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private AtendimentoRepository atendimentoRepository;
+	
+	@Autowired
+	private VacinacaoRepository vacinacaoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		Tutor t1 = new Tutor(null, "999999", "Joaquim Red");
 		Tutor t2 = new Tutor(null, "888888", "Nadia Green");
@@ -77,6 +84,17 @@ public class TestConfig implements CommandLineRunner {
 		Atendimento at1 = new Atendimento(null, LocalDateTime.parse("15/02/2022 12:32:32", formatter), 3 , 1, 100.0, p2, v1);
 		
 		atendimentoRepository.save(at1);
+		
+		Vacinacao vacinacao1 = new Vacinacao(p1, vac1, LocalDate.parse("12/02/2022", formatter2), 120.00, "1ª dose");
+		Vacinacao vacinacao2 = new Vacinacao(p2, vac1, LocalDate.parse("25/03/2022", formatter2), 120.00, "1ª dose");
+		Vacinacao vacinacao3 = new Vacinacao(p3, vac1, LocalDate.parse("15/07/2021", formatter2), 100.00, "1ª dose");
+		Vacinacao vacinacao4 = new Vacinacao(p4, vac1, LocalDate.parse("31/03/2022", formatter2), 120.00, "1ª dose");
+		Vacinacao vacinacao5 = new Vacinacao(p5, vac1, LocalDate.parse("07/10/2021", formatter2), 100.00, "1ª dose");
+		Vacinacao vacinacao6 = new Vacinacao(p6, vac1, LocalDate.parse("09/03/2019", formatter2), 99.50, "1ª dose");
+		
+		vacinacaoRepository.saveAll(Arrays.asList(vacinacao1, vacinacao2, vacinacao3, vacinacao4, vacinacao5, vacinacao6));
+		
+		
 		
 		/*		  Vacina vac1 = new Vacina(null, "AntiRabica", "Lab A", "AB-190", "03-03-2021",
 				  100.0); Vacina vac2 = new Vacina(null, "V10", "Laboratorio A", "UI-890",
